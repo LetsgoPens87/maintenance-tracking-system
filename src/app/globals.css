@@ -1,21 +1,25 @@
+/* src/globals.css */
+
+/* Import Tailwind's base, components, and utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Add any global custom styles here */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-gray-100 text-gray-900; /* Example of using Tailwind's apply directive */
+  font-family: 'Arial', sans-serif; /* Custom font family */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold text-gray-800; /* Consistent heading styling */
+}
+
+a {
+  @apply text-blue-600 hover:text-blue-800; /* Link styling */
+}
+
+/* Example for a custom class */
+.container {
+  @apply max-w-7xl mx-auto p-4; /* Custom container setup */
 }
