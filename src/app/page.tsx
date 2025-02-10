@@ -16,7 +16,11 @@ const Page: React.FC = () => {
 
   const handleAddEquipment = (newEquipment: Equipment) => {
     setEquipments((prevEquipments) => [...prevEquipments, newEquipment]);
-    setActiveComponent('equipmentTable');
+    
+    alert('Equipment created successfully!');  // Simple option
+    setTimeout(() => {
+      setActiveComponent('equipmentTable');
+    }, 2000);
   };
 
   const handleAddMaintenance = (newMaintenance: MaintenanceRecord) => {

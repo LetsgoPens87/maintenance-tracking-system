@@ -41,42 +41,53 @@ const EquipmentForm: React.FC<{ onAdd: (equipment: Equipment) => void }> = ({ on
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const newId = String(Math.floor(100000 + Math.random() * 900000)); // Generate a unique ID
-      const formDataWithId = { ...formData, id: newId }; // Add the generated ID
+  const [successMessage, setSuccessMessage] = useState<string>(''); // Add state for success message
 
-      const parsedFormData = equipmentSchema.parse(formDataWithId); // Validate form data
-      onAdd(parsedFormData); // Pass validated data to the onAdd callback
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  try {
+    const newId = String(Math.floor(100000 + Math.random() * 900000));
+    const formDataWithId = { ...formData, id: newId };
 
-      // Reset form to default values
-      setFormData({
-        id: '',
-        name: '',
-        location: '',
-        department: Department.Machining,
-        model: '',
-        serialNumber: '',
-        installDate: new Date().toISOString().split('T')[0],
-        status: Status.Operational,
+    const parsedFormData = equipmentSchema.parse(formDataWithId);
+    onAdd(parsedFormData); 
+
+    setFormData({
+      id: '',
+      name: '',
+      location: '',
+      department: Department.Machining,
+      model: '',
+      serialNumber: '',
+      installDate: new Date().toISOString().split('T')[0],
+      status: Status.Operational,
+    });
+    setErrors({});
+    setSuccessMessage('Equipment created successfully!'); // ✅ Display success message
+
+    // Optionally clear the message after a few seconds
+    setTimeout(() => setSuccessMessage(''), 3000);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      const errorMap: { [key: string]: string } = {};
+      error.errors.forEach((err) => {
+        errorMap[err.path[0]] = err.message;
       });
-      setErrors({}); // Clear errors on successful submission
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const errorMap: { [key: string]: string } = {};
-        error.errors.forEach((err) => {
-          errorMap[err.path[0]] = err.message; // Map Zod errors to a format suitable for state
-        });
-        setErrors(errorMap); // Update state with validation errors
-      }
+      setErrors(errorMap);
     }
-  };
+  }
+};
 
   return (
     <div className="flex items-center justify-center bg-gray-100">
       <form className="bg-white p-6 rounded shadow-md" onSubmit={handleSubmit}>
+        {/* ✅ Success Message */}
+        {successMessage && (
+          <div className="success-message bg-green-200 text-green-800 p-2 rounded mb-4">
+            {successMessage}
+          </div>
+        )}
         <div>
           <label>Name:</label>
           <input
