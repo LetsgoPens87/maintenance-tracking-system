@@ -5,7 +5,6 @@ import {
   getSortedRowModel,
   flexRender,
   SortingFn,
-  Column,
   Row,
 } from '@tanstack/react-table';
 import { MaintenanceRecord } from '../types/maintenance';

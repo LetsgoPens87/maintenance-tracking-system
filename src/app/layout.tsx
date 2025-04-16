@@ -19,7 +19,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {children}
         </main>
         <footer className="bg-black text-white text-center p-4">
-          <p>©Kanehl Consulting LLC</p>
+          <p>©Kanehl Consulting, LLC</p>
         </footer>
       </body>
     </html>

@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@tanstack/react-table": "^8.20.6",
     "maintenance-tracking-system": "file:",
     "next": "15.1.5",
+=======
+    "@tanstack/react-table": "^8.21.3",
+    "maintenance-tracking-system": "file:",
+    "next": "^15.3.0",
+>>>>>>> 56b77a7 (minor changes before meeting)
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.3",
@@ -20,7 +26,11 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+<<<<<<< HEAD
     "@playwright/test": "^1.50.1",
+=======
+    "@playwright/test": "^1.51.1",
+>>>>>>> 56b77a7 (minor changes before meeting)
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
